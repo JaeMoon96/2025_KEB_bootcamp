@@ -1,26 +1,19 @@
-def is_prime(num) -> bool:
-    """
-    A function that returns True if it is a prime number and False if it is not a prime number
-    :param num: integer number
-    :return: boolean type
-    """
-    if num >= 2:
-        for i in range(2, int(num ** 0.5) + 1):
-            if num % i == 0:
-                return False
-                #is_prime = False
-                #break
-            #print(i, end=' ')
-    else:
-        return False
-    return True
+univ = "Inha university"
+print(univ)
+print(univ[5])
+# univ[5] = 'U'  # immutable
+# print(univ)
+subjects = ['python', 'c++', 'linux', 'data structure', 'database']
+print(subjects)
+print(subjects[3])
+subjects[3] = 'data structure & algorithm'  # mutable
+print(subjects)
 
-# main
-#help(abs)
-help(is_prime)
-n = int(input("Input number : "))
-
-if is_prime(n):  # function call
-    print(f"{n} is prime number")
-else:
-    print(f"{n} is NOT prime number!")
+# print(0.1)
+# print(1e-1)
+# print(0.01)
+# print(1e-2)
+# print(314.1592)
+# print(0.3141592e3)
+# print(21000)
+# print(21_000)
