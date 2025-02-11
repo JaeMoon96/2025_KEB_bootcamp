@@ -1,7 +1,8 @@
-# 1) for -> while  v1.1
-# 2) while 구문으로 구간 소수를 출력하는 프로그램을 작성 v1.2
-# 3) ** 대신 pow 함수 v1.3
-
+# Assignment Day 02
+# v1.1) Change the for phrase to the while phrase.
+# v1.2) Write a program that receives two numbers and outputs only prime numbers between the two numbers. Then, use only the while statement and include the two numbers entered.
+# v1.3) Rewrite the code using the power function instead of the ** operator.
+# v1.4) Make my_pow custom function instead of ** operator, power function and make it work.
 
 def is_prime(num) -> bool:
     """
@@ -9,17 +10,20 @@ def is_prime(num) -> bool:
     :param num: integer number
     :return: boolean type
     """
-    i = 2
-    while i <= int(num ** 0.5):
-        if num % i == 0:
-            return False
-        i = i + 1
-
-        return True
+    if num >= 2:
+        i = 2
+        while i < (int(num ** 0.5) + 1):
+        #for i in range(2, int(num ** 0.5) + 1):
+            if num % i == 0:
+                return False
+            i = i + 1
+    else:
+        return False
+    return True
 
 # main
 #help(abs)
-help(is_prime)
+#help(is_prime)
 n = int(input("Input number : "))
 
 if is_prime(n):  # function call
