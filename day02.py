@@ -3,13 +3,6 @@
 # 3) ** 대신 pow 함수 v1.3
 
 
-
-# 1) for -> while  v1.1
-# 2) while 구문으로 구간 소수를 출력하는 프로그램을 작성 v1.2
-# 3) ** 대신 pow 함수 v1.3
-
-
-
 def is_prime(num) -> bool:
     """
     A function that returns True if it is a prime number and False if it is not a prime number
