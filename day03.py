@@ -35,13 +35,13 @@ while True:
     #     print_menu(int(menu)-1)
     # elif menu == '5':
     #     print_menu(int(menu)-1)
-    elif menu == 6:
+    elif menu == len(drinks)+1 :
         random_index = random.randint(0, len(drinks)-1)
         #random_index = random.randint(0, 4) 보다는 위의 코드가 메뉴가 업데이트 됐을때 대응하기좋음
         print(f'{drinks[random_index]}에 어울리는 안주는 {snacks[random_index]} 입니다')
         # random_drink = random.choice(drinks_foods_keys)
         # print(f'{random_drink}에 어울리는 안주는 {drinks_foods[random_drink]} 입니다')
-    elif menu == 7:
+    elif menu == len(drinks) +2 :
         print(f'다음에 또 오세요')
         break
 
