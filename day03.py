@@ -1,87 +1,35 @@
-#  딕셔너리 생성 (과목명을 key, 교수명을 value로 설정)
-sugang = dict(python="kim", cpp="sung", db="kang")  # {"python": "kim", "cpp": "sung", "db": "kang"}
-#sugang = {'py thon': 'kim', c p p: 'sung', db : 'kang') 아래코드는 공란이있어도 무방
-#  딕셔너리 전체 출력
-print(sugang)  
-# 출력: {'python': 'kim', 'cpp': 'sung', 'db': 'kang'}
+#  딕셔너리 생성 (술과 어울리는 안주를 매칭)
+drinks_foods = {"위스키": "초콜릿", "와인": "치즈", "소주": "삼겹살", "고량주": "양꼬치"}
 
-#  새로운 key-value 쌍 추가
-sugang['datastructure'] = 'kim'  # 'datastructure' 과목의 담당 교수를 'kim'으로 추가
+#  딕셔너리의 key 목록을 리스트로 변환
+drinks_foods_keys = list(drinks_foods)  # ["위스키", "와인", "소주", "고량주"]
 
-#  딕셔너리 출력 (추가된 값 확인)
-print(sugang)  
-# 출력: {'python': 'kim', 'cpp': 'sung', 'db': 'kang', 'datastructure': 'kim'}
+#  t반복문을 사용하여 사용자 입력을 받아 처리
+while True:
+    # 사용자에게 선택지를 제공
+    menu = input(f'다음 술 중에 고르세요.\n'
+                 f'1) {drinks_foods_keys[0]}   2) {drinks_foods_keys[1]}   '
+                 f'3) {drinks_foods_keys[2]}   4) {drinks_foods_keys[3]}   5) 종료 : ')
 
-#  기존 key의 값 변경 (업데이트)
-sugang['datastructure'] = 'park'  # 'datastructure' 담당 교수를 'park'으로 변경
+    # 사용자가 선택한 번호에 따라 대응하는 안주를 출력
+    if menu == '1':
+        print(f'{drinks_foods_keys[0]}에 어울리는 안주는 {drinks_foods[drinks_foods_keys[0]]} 입니다')
+    elif menu == '2':
+        print(f'{drinks_foods_keys[1]}에 어울리는 안주는 {drinks_foods[drinks_foods_keys[1]]} 입니다')
+    elif menu == '3':
+        print(f'{drinks_foods_keys[2]}에 어울리는 안주는 {drinks_foods[drinks_foods_keys[2]]} 입니다')
+    elif menu == '4':
+        print(f'{drinks_foods_keys[3]}에 어울리는 안주는 {drinks_foods[drinks_foods_keys[3]]} 입니다')
+    elif menu == '5':  # '5' 입력 시 프로그램 종료
+        print(f'다음에 또 오세요')
+        break  # 반복문 종료
+    else:
+        print("올바른 번호를 입력하세요!")  # 잘못된 입력 처리
 
-#  딕셔너리 출력 (변경된 값 확인)
-print(sugang)  
-# 출력: {'python': 'kim', 'cpp': 'sung', 'db': 'kang', 'datastructure': 'park'}
-
-#  특정 과목의 담당 교수 출력
-print(sugang['db'])  # 'kang'
-
-#  get()을 사용한 key 조회 (안전한 방식)
-print(sugang.get('db'))  # 'kang'
-
-#  존재하지 않는 key 조회 시 None 반환
-print(sugang.get('opensource'))  # None
-
-#  존재하지 않는 key 조회 시 기본값 설정
-print(sugang.get('opensource', 'not exist'))  # 'not exist'
-
-#  딕셔너리의 key-value 쌍을 반복문으로 출력
-for subject, professor in sugang.items():
-    print(f'{subject} 과목 담당교수는 {professor}입니다')
-
-# 출력 결과:
-# python 과목 담당교수는 kim입니다
-# cpp 과목 담당교수는 sung입니다
-# db 과목 담당교수는 kang입니다
-# datastructure 과목 담당교수는 park입니다
-
-#  딕셔너리의 key만 출력 (방법 1: keys() 사용)
-for k in sugang.keys():
-    print(k)
-
-#  딕셔너리의 key만 출력 (방법 2: keys() 없이도 가능)
-for k in sugang:
-    print(k)
-
-# 출력 결과:
-# python
-# cpp
-# db
-# datastructure
-
-#  딕셔너리의 값(value)만 출력
-for v in sugang.values():
-    print(v)
-
-# 출력 결과:
-# kim
-# sung
-# kang
-# park
-
-#  딕셔너리 key-value 쌍을 튜플 형태로 출력
-for s in sugang.items():
-    print(s)
-
-# 출력 결과:
-# ('python', 'kim')
-# ('cpp', 'sung')
-# ('db', 'kang')
-# ('datastructure', 'park')
-
-#  정리 
-# - `sugang = dict(python="kim", cpp="sung", db="kang")` → 딕셔너리 생성
-# - `sugang['datastructure'] = 'kim'` → 새 key-value 추가
-# - `sugang['datastructure'] = 'park'` → 기존 값 업데이트
-# - `sugang['db']` → 특정 key의 값 조회
-# - `sugang.get('opensource')` → 존재하지 않는 key 조회 (None 반환)
-# - `sugang.get('opensource', 'not exist')` → 기본값을 설정하여 조회
-# - `sugang.items()` → key-value 쌍 반환 (튜플)
-# - `sugang.keys()` → key 목록 반환
-# - `sugang.values()` → value 목록 반환
+#  정리
+# - `drinks_foods` → 술과 어울리는 안주를 저장하는 딕셔너리
+# - `list(drinks_foods)` → 딕셔너리의 key 목록을 리스트로 변환
+# - `while True` → 무한 루프를 사용하여 사용자의 입력을 지속적으로 받음
+# - `input()` → 사용자가 메뉴 선택 (1~5)
+# - `if-elif-else` → 사용자의 선택에 따라 적절한 안주를 출력
+# - `break` → 사용자가 '5'를 선택하면 프로그램 종료
