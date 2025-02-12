@@ -1,81 +1,57 @@
-import random  #  랜덤 모듈을 불러옴 (랜덤 추천 기능을 위해 사용)
+#  1  Dictionary Comprehension을 사용하여 숫자의 제곱을 저장하는 딕셔너리 생성
+# squares = {n: pow(n, 2) for n in range(10)}  # pow() 함수 사용
+# squares = {n: n**2 for n in range(10)}  # ** 연산자 사용
+squares = {n: n * n for n in range(10)}  # 곱셈 연산 사용
 
-#  딕셔너리 생성 (기본적인 술과 어울리는 안주 매칭)
-drinks_foods = {
-    "위스키": "초콜릿",
-    "와인": "치즈",
-    "소주": "삼겹살",
-    "고량주": "양꼬치"
-}
+#  딕셔너리 출력 (0부터 9까지의 숫자와 그 제곱값)
+print(squares)
+# 출력: {0: 0, 1: 1, 2: 4, 3: 9, 4: 16, 5: 25, 6: 36, 7: 49, 8: 64, 9: 81}
 
-#  딕셔너리 출력 (테스트용)
-# print(drinks_foods)
+#  2️ 문자열의 각 문자가 몇 번 등장하는지 세는 딕셔너리 생성 (Dictionary Comprehension 사용)
+univ = 'inha university'  # 대상 문자열
 
-#  특정 키 삭제 (`pop()` 사용)
-# print(drinks_foods.pop("고량주"))  # '고량주' 삭제 및 해당 값 반환
-# print(drinks_foods)  # '고량주' 삭제 후 딕셔너리 출력
+counts_alphabet = {letter: univ.count(letter) for letter in univ}  # 각 문자별 등장 횟수를 저장
 
-#  `del`을 사용하여 키 삭제
-# del drinks_foods["위스키"]
+#  결과 출력
+print(counts_alphabet)
+# 출력 예시 (문자의 개수에 따라 다를 수 있음):
+# {'i': 2, 'n': 2, 'h': 1, 'a': 1, ' ': 1, 'u': 2, 'v': 1, 'e': 1, 'r': 1, 's': 1, 't': 1, 'y': 1}
 
-#  새로운 항목 추가
-# drinks_foods["사케"] = "광어회"
+#  3️ 같은 기능을 반복문으로 구현 (Dictionary Comprehension 사용하지 않음)
+counts_alphabet = dict()  # 빈 딕셔너리 생성
 
-#  일본 술과 안주 추가 (다른 딕셔너리와 병합)
-japan_drinks_foods = {
-    "사케": "광어회",
-    "위스키": "낙곱새"
-}
-drinks_foods.update(japan_drinks_foods)  # drinks_foods에 japan_drinks_foods 내용 추가
+# 문자열을 순회하면서 각 문자의 등장 횟수를 계산
+for letter in univ:
+    counts_alphabet[letter] = univ.count(letter)  # count() 함수를 사용하여 문자 개수 계산
 
-#  딕셔너리의 key 목록을 리스트로 변환
-drinks_foods_keys = list(drinks_foods)  # ["와인", "소주", "사케", "위스키", "고량주"]
-
-#  리스트 관련 테스트 코드 (주석 처리)
-# print(drinks_foods_keys)
-# print(drinks_foods_keys.pop(0))  # 리스트 첫 번째 요소 제거 후 반환
-# print(drinks_foods_keys.remove("위스키"))  # 특정 요소 제거
-# print(drinks_foods_keys)
-# print(random.choice(drinks_foods_keys))  # 리스트에서 랜덤 선택
-
-# 📌 사용자 입력을 받아 추천 시스템 실행
-while True:
-    menu = input(f'다음 술 중에 고르세요.\n'
-                 f'1) {drinks_foods_keys[0]}   2) {drinks_foods_keys[1]}   '
-                 f'3) {drinks_foods_keys[2]}   4) {drinks_foods_keys[3]}   '
-                 f'5) {drinks_foods_keys[4]}   6) 아무거나   7) 종료 : ')
-
-    # 사용자가 입력한 값에 따라 적절한 응답 출력
-    if menu == '1':
-        print(f'{drinks_foods_keys[0]}에 어울리는 안주는 {drinks_foods[drinks_foods_keys[0]]} 입니다')
-    elif menu == '2':
-        print(f'{drinks_foods_keys[1]}에 어울리는 안주는 {drinks_foods[drinks_foods_keys[1]]} 입니다')
-    elif menu == '3':
-        print(f'{drinks_foods_keys[2]}에 어울리는 안주는 {drinks_foods[drinks_foods_keys[2]]} 입니다')
-    elif menu == '4':
-        print(f'{drinks_foods_keys[3]}에 어울리는 안주는 {drinks_foods[drinks_foods_keys[3]]} 입니다')
-    elif menu == '5':
-        print(f'{drinks_foods_keys[4]}에 어울리는 안주는 {drinks_foods[drinks_foods_keys[4]]} 입니다')
-    elif menu == '6':  # 랜덤 추천 기능
-        random_drink = random.choice(drinks_foods_keys)  # 랜덤으로 하나 선택
-        print(f'{random_drink}에 어울리는 안주는 {drinks_foods[random_drink]} 입니다')
-    elif menu == '7':  # 프로그램 종료
-        print(f'다음에 또 오세요')
-        break  # 반복문 종료
-    else:
-        print("올바른 번호를 입력하세요!")  # 잘못된 입력 처리
+#  결과 출력 (Dictionary Comprehension을 사용한 방식과 동일한 결과)
+print(counts_alphabet)
 
 #  정리
-# - `drinks_foods` → 기본 술과 어울리는 안주 저장
-# - `pop()` / `del` → 특정 key 삭제
-# - `update()` → 두 개의 딕셔너리를 병합
-# - `list(drinks_foods)` → 딕셔너리 key 목록을 리스트로 변환
-# - `random.choice()` → 리스트에서 랜덤 요소 선택 (랜덤 추천 기능)
-# - `while True` → 무한 루프를 사용하여 사용자의 입력을 지속적으로 받음
-# - `if-elif-else` → 사용자의 선택에 따라 적절한 안주를 출력
-# - `break` → 사용자가 '7'을 선택하면 프로그램 종료
-
-star = ['테란', '저그', '프로토스']
-print(random.choice(star))
-print(random.randint(1,6))
-print(star[random.randint(0,2)])
+# - `{n: n*n for n in range(10)}` → 0~9의 숫자와 그 제곱값을 저장하는 딕셔너리
+#    ✅ 장점: 짧고 간결함
+#    ❌ 단점: 없음
+#
+# - `{letter: univ.count(letter) for letter in univ}` → 문자열에서 각 문자의 등장 횟수를 저장
+#    ✅ 장점: 간결하고 가독성이 좋음
+#    ❌ 단점: `count()`를 여러 번 호출하여 비효율적 (O(n^2) 시간 복잡도)
+#
+# - `for` 루프 사용 → 같은 기능을 반복문으로 구현
+#    ✅ 장점: 더 명확한 흐름을 가짐
+#    ❌ 단점: 코드가 길어질 수 있음
+#
+#개선 가능 포인트
+# 현재 코드에서는 `univ.count(letter)`를 문자열 내 모든 문자에 대해 반복 실행하기 때문에 **비효율적**입니다.
+# 아래와 같이 `collections.Counter`를 사용하면 더 빠르게 구현할 수 있습니다.
+#
+# ```python
+# from collections import Counter
+#
+# univ = 'inha university'
+# counts_alphabet = dict(Counter(univ))
+#
+# print(counts_alphabet)
+# ```
+#
+#**Counter를 사용하면 반복적으로 `count()`를 호출할 필요 없음**
+#**속도 개선 효과 (O(n) 시간 복잡도)**
