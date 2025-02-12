@@ -1,10 +1,14 @@
 #Assignment
-#v2,2) 다음 코드에서 딕셔너리를 제거하고 리스트만 사용하여 동일하게 동작하도록 코드를 수정
+#v2,5) while 안쪽에 하드 코딩된 코드를 함수화 하시오
 
 import random
 
 drinks = ["위스키", "와인", "소주", "고량주"]
 snacks = ["초콜릿", "치즈", "삼겹살", "양꼬치"]
+
+def print_menu(n):
+    print(f'{drinks[n]}에 어울리는 안주는 {snacks[n]} 입니다')
+
 
 drinks.append("사케")
 snacks.append("광어회")
@@ -22,15 +26,15 @@ print(menu_list)
 while True:
     menu = input()
     if menu == '1':
-        print(f'{drinks[0]}에 어울리는 안주는 {snacks[0]} 입니다')
+        print_menu(int(menu)-1)
     elif menu == '2':
-        print(f'{drinks[1]}에 어울리는 안주는 {snacks[1]} 입니다')
+        print_menu(int(menu)-1)
     elif menu == '3':
-        print(f'{drinks[2]}에 어울리는 안주는 {snacks[2]} 입니다')
+        print_menu(int(menu)-1)
     elif menu == '4':
-        print(f'{drinks[3]}에 어울리는 안주는 {snacks[3]} 입니다')
+        print_menu(int(menu)-1)
     elif menu == '5':
-        print(f'{drinks[4]}에 어울리는 안주는 {snacks[4]} 입니다')
+        print_menu(int(menu) - 1)
     elif menu == '6':
         random_index = random.randint(0, len(drinks)-1)
         #random_index = random.randint(0, 4) 보다는 위의 코드가 메뉴가 업데이트 됐을때 대응하기좋음
