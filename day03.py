@@ -9,9 +9,18 @@ snacks = ["초콜릿", "치즈", "삼겹살", "양꼬치"]
 drinks.append("사케")
 snacks.append("광어회")
 snacks[0] = "낙곱새"
+#drinks.append("데킬라")
+#snacks.append("소금")
+
+menu_list = '다음 술중에 고르세요.\n'
+for i in range(len(drinks)):
+    menu_list = menu_list + f'{i+1}) {drinks[i]}  '
+menu_list = menu_list + f'{len(drinks)+1}) 아무거나  {len(drinks)+2}) 종료 : '
+print(menu_list)
+#menu = input(f'다음 술 중에 고르세요.\n' f'1) {drinks[0]}   2) {drinks[1]}   'f'3) {drinks[2]}   4) {drinks[3]}   'f'5) {drinks[4]}   6) 아무거나   7) 종료 : ')
 
 while True:
-    menu = input(f'다음 술 중에 고르세요.\n' f'1) {drinks[0]}   2) {drinks[1]}   'f'3) {drinks[2]}   4) {drinks[3]}   'f'5) {drinks[4]}   6) 아무거나   7) 종료 : ')
+    menu = input()
     if menu == '1':
         print(f'{drinks[0]}에 어울리는 안주는 {snacks[0]} 입니다')
     elif menu == '2':
@@ -32,12 +41,3 @@ while True:
         print(f'다음에 또 오세요')
         break
 
-
-#  정리
-# - `drinks = ["위스키", "와인", "소주", "고량주", "사케"]` → 술 리스트
-# - `foods = ["낙곱새", "치즈", "삼겹살", "양꼬치", "광어회"]` → 해당 술에 맞는 안주 리스트
-# - 리스트의 인덱스를 활용하여 대응되는 술-안주 매칭
-# - `random.randint(0, len(drinks) - 1)` → 리스트에서 랜덤 요소 선택
-# - `while True` → 무한 루프를 사용하여 사용자의 입력을 지속적으로 받음
-# - `if-elif-else` → 사용자의 선택에 따라 적절한 안주를 출력
-# - `break` → 사용자가 '7'을 선택하면 프로그램 종료
