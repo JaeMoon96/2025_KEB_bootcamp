@@ -1,34 +1,12 @@
-# 🔹 0부터 50까지의 짝수 리스트 생성
-even_numbers = [i for i in range(51) if i % 2 == 0]  # 리스트 컴프리헨션 사용
-print(even_numbers)  # [0, 2, 4, ..., 50] (짝수 리스트 출력)
+# SOLID
+# Open Closed Principle : 개방 폐쇄 원칙 (확장에는 열려 있고 수정에는 닫혀있는 원칙)
 
-# ✅ 방법 1: 일반 함수 사용 (현재 주석 처리됨)
-# def squares(n):
-#     return n * n
-# print(tuple(map(squares, even_numbers)))
-# 🔹 일반 함수를 사용하여 map()과 함께 제곱 값을 계산
-# - 장점: 가독성이 좋고, 함수 재사용 가능
-# - 단점: 함수 선언이 필요하여 코드가 길어짐
 
-# ✅ 방법 2: lambda(익명 함수) 활용
-print(tuple(map(lambda x: x**2, even_numbers)))
-# 🔹 lambda(익명 함수)를 사용하여 map()과 함께 제곱 계산
-# - 장점: 코드가 간결하고, 함수 선언 없이 즉시 사용 가능
-# - 단점: 너무 길거나 복잡한 람다 함수는 가독성이 떨어질 수 있음
+def factorial_repetition(n) -> int:
+    result = 1
+    for i in range(2, n+1):
+        result = result * i
+    return result
 
-# ✅ 방법 3: lambda를 변수에 저장하여 사용
-z = lambda x: pow(x, 2)  # pow(x, 2) = x**2와 동일
-print(tuple(map(z, even_numbers)))
-# 🔹 lambda를 변수에 저장한 후 map()과 함께 사용
-# - 장점: 재사용이 가능하면서도 코드가 간결함
-# - 단점: 일반 함수처럼 명확하지 않을 수 있음
-
-# 🔥 lambda(람다 함수)란?
-# - 일반적으로 **한 번만 사용할 함수**를 간단히 표현할 때 사용 (ex: 일회용 젓가락)
-# - 불필요한 함수 선언을 줄여 코드가 간결해짐
-# - 하지만 너무 복잡한 람다 함수는 가독성이 떨어질 수 있음
-
-# 🎯 **최종 정리**
-# ✅ 일반 함수 (def 사용): 가독성이 좋지만 함수 선언이 필요함
-# ✅ lambda 직접 사용: 코드가 간결하지만 너무 길어지면 가독성이 떨어짐
-# ✅ lambda 변수에 저장 후 사용: 필요할 때 재사용 가능하지만 일반 함수만큼 직관적이지 않음
+number = int(input())
+print(f"{number}! = {factorial_repetition(number)}")
