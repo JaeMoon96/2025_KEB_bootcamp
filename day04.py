@@ -1,60 +1,34 @@
-# 🔹 소수 판별 함수 (Prime Number Check)
-def isprime(n) -> bool:
-    """
-    매개변수로 넘겨 받은 수가 소수인지 여부를 boolean 값으로 리턴하는 함수
+# 🔹 0부터 50까지의 짝수 리스트 생성
+even_numbers = [i for i in range(51) if i % 2 == 0]  # 리스트 컴프리헨션 사용
+print(even_numbers)  # [0, 2, 4, ..., 50] (짝수 리스트 출력)
 
-    :param n: 판정할 정수 값
-    :return: 소수면 True, 소수가 아니면 False
-    """
-    if n < 2:  # 2 미만의 숫자는 소수가 아님
-        return False
-    else:
-        i = 2
-        while i * i <= n:  # 루트(n)까지만 확인 (연산 최적화)
-            if n % i == 0:  # 나누어 떨어지는 경우 (소수 아님)
-                return False
-            i += 1  # 다음 숫자로 증가
-        return True  # 나누어 떨어지는 수가 없으면 소수
+# ✅ 방법 1: 일반 함수 사용 (현재 주석 처리됨)
+# def squares(n):
+#     return n * n
+# print(tuple(map(squares, even_numbers)))
+# 🔹 일반 함수를 사용하여 map()과 함께 제곱 값을 계산
+# - 장점: 가독성이 좋고, 함수 재사용 가능
+# - 단점: 함수 선언이 필요하여 코드가 길어짐
 
-# 🔹 사용자 입력을 받아 반복 실행하는 메뉴
-while True:
-    menu = input("1) Fahrenheit -> Celsius   2) Celsius -> Fahrenheit   3) Prime1   4) Prime2   5) Quit program : ")
+# ✅ 방법 2: lambda(익명 함수) 활용
+print(tuple(map(lambda x: x**2, even_numbers)))
+# 🔹 lambda(익명 함수)를 사용하여 map()과 함께 제곱 계산
+# - 장점: 코드가 간결하고, 함수 선언 없이 즉시 사용 가능
+# - 단점: 너무 길거나 복잡한 람다 함수는 가독성이 떨어질 수 있음
 
-    if menu == '1':  # 🔸 화씨 → 섭씨 변환
-        fahrenheit = float(input('Input Fahrenheit : '))  # 사용자 입력을 실수(float)로 변환
-        celsius = (fahrenheit - 32.0) * 5.0 / 9.0  # 변환 공식 적용
-        print(f'Fahrenheit : {fahrenheit}F, Celsius : {celsius:.4f}C')  # 결과 출력 (소수점 4자리)
+# ✅ 방법 3: lambda를 변수에 저장하여 사용
+z = lambda x: pow(x, 2)  # pow(x, 2) = x**2와 동일
+print(tuple(map(z, even_numbers)))
+# 🔹 lambda를 변수에 저장한 후 map()과 함께 사용
+# - 장점: 재사용이 가능하면서도 코드가 간결함
+# - 단점: 일반 함수처럼 명확하지 않을 수 있음
 
-    elif menu == '2':  # 🔸 섭씨 → 화씨 변환
-        celsius = float(input('Input Celsius : '))  # 사용자 입력을 실수(float)로 변환
-        fahrenheit = (celsius * 9.0 / 5.0) + 32.0  # 변환 공식 적용
-        print(f'Celsius : {celsius}C, Fahrenheit : {fahrenheit:.4f}F')  # 결과 출력 (소수점 4자리)
+# 🔥 lambda(람다 함수)란?
+# - 일반적으로 **한 번만 사용할 함수**를 간단히 표현할 때 사용 (ex: 일회용 젓가락)
+# - 불필요한 함수 선언을 줄여 코드가 간결해짐
+# - 하지만 너무 복잡한 람다 함수는 가독성이 떨어질 수 있음
 
-    elif menu == '3':  # 🔸 단일 숫자 소수 판별
-        number = int(input("Input number : "))  # 사용자 입력을 정수(int)로 변환
-        if isprime(number):  # 소수 판별 함수 호출
-            print(f'{number} is prime number')  # 소수인 경우 출력
-        else:
-            print(f'{number} is NOT prime number!')  # 소수가 아닌 경우 출력
-
-    elif menu == '4':  # 🔸 범위 내의 모든 소수 찾기
-        n1, n2 = map(int, input("Input first second number : ").split())  # 두 개의 정수를 입력받음
-        n1, n2 = min(n1, n2), max(n1, n2)  # 작은 값이 n1, 큰 값이 n2가 되도록 정렬
-
-        # numbers = input("Input first second number : ").split()  # (대체 코드)
-        # n1 = int(numbers[0])
-        # n2 = int(numbers[1])
-        # if n1 > n2:  # 정렬 처리
-        #     n1, n2 = n2, n1
-
-        for number in range(n1, n2 + 1):  # n1부터 n2까지 반복
-            if isprime(number):  # 소수인지 판별
-                print(number, end=' ')  # 소수인 경우 출력 (공백으로 구분)
-        print()  # 줄바꿈
-
-    elif menu == '5':  # 🔸 프로그램 종료
-        print('Terminate Program.')  # 종료 메시지 출력
-        break  # while 루프 종료
-
-    else:  # 🔸 잘못된 메뉴 선택 시
-        print('Invalid Menu!')  # 오류 메시지 출력
+# 🎯 **최종 정리**
+# ✅ 일반 함수 (def 사용): 가독성이 좋지만 함수 선언이 필요함
+# ✅ lambda 직접 사용: 코드가 간결하지만 너무 길어지면 가독성이 떨어짐
+# ✅ lambda 변수에 저장 후 사용: 필요할 때 재사용 가능하지만 일반 함수만큼 직관적이지 않음
