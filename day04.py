@@ -50,4 +50,3 @@ while True:
     elif menu == len(drinks) +2 :
         print(f'다음에 또 오세요')
         break
-
