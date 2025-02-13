@@ -1,52 +1,24 @@
-import random
+def squares(*n) -> list:
+    """
+    넘겨 받은 여러 개의 숫자에 대해 각각 제곱한 값을 리스트로 반환하는 함수
 
-# d_s_p = {"위스키" : ['초콜릿', 50_000]}
-# print(d_s_p["위스키"][1])
-
-drinks = ["위스키", "와인", "소주", "고량주"]
-snacks = ["초콜릿", "치즈", "삽겹살", "양꼬치"]
-prices = [50000, 30000, 5000, 7500]
-amounts = [0 for i in range(len(drinks))]
-
-drinks.append("사케")
-snacks.append("광어회")
-prices.append(25000)
-amounts.append(0)
-snacks[0] = "낙곱새"
-# drinks.append("데킬라")
-# snacks.append("소금")
-# prices.append(35000)
-# amounts.append(0)
-
-total_price = 0
-
-def print_menu_total_price(n):
-    global total_price
-    print(f'{drinks[n]}에 어울리는 안주는 {snacks[n]} 입니다')
-    print(f'가격 : {prices[n]}')
-    amounts[n] = amounts[n] + 1
-    total_price = total_price + prices[n]
+    :param n: 여러 개의 숫자 (가변 매개변수, tuple 형태로 전달됨)
+    :return: 제곱된 숫자들이 담긴 리스트
+    """
+    return [pow(i, 2) for i in n]  # 리스트 내포(list comprehension)를 사용하여 각 숫자를 제곱 후 리스트로 반환
 
 
-menu_list = '다음 술중에 고르세요.\n'
-for i in range(len(drinks)):
-    menu_list = menu_list + f'{i+1}) {drinks[i]}  '
-menu_list = menu_list + f'{len(drinks)+1}) 아무거나  {len(drinks)+2}) 종료 : '
+def run_function(f, *number) -> list:
+    """
+    함수와 여러 개의 숫자를 받아서 실행하는 함수
 
-while True:
-    menu = int(input(menu_list))
-    if 1 <= menu <= len(drinks):
-        print_menu_total_price(menu - 1)
-    elif menu == len(drinks)+1:
-        # random_index = random.randint(0, len(drinks)-1)
-        # print(f'{drinks[random_index]}에 어울리는 안주는 {snacks[random_index]} 입니다')
-        print_menu_total_price(random.randint(0, len(drinks)-1))
-    elif menu == len(drinks)+2:
-        print(f'다음에 또 오세요')
-        break
+    :param f: 실행할 함수 (첫 번째 매개변수)
+    :param number: 실행할 함수에 전달할 여러 개의 숫자 (가변 매개변수)
+    :return: 실행된 함수의 반환값 (리스트)
+    """
+    return f(*number)  # 전달받은 함수 f에 가변 매개변수를 풀어서 전달 (*number)
 
 
-for k in range(len(drinks)):
-    if amounts[k] != 0:
-        print(f"주류명 : {drinks[k]}\n 수량 : {amounts[k]:>2} 단가 : {prices[k]:>6}  소계 : {prices[k] * amounts[k]:>5}")
-print(f"총 금액 : {total_price}원")
+# 함수 호출 예제
+print(squares(7, 5, 2))  # [49, 25, 4]
+print(run_function(squares, 9, 10))  # [81, 100]g
