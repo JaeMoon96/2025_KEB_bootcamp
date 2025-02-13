@@ -1,26 +1,31 @@
-# 🔹 클로저(Closure) 바깥족함수의 리턴값이 안쪽함수의 이름임
-def out_func(nout):  # 외부 함수 (nout 값을 받아서 저장)
-    def inner_func():  # 내부 함수 (외부 변수를 사용하는 클로저)
-        return nout * nout  # 외부 함수의 변수 nout을 사용하여 제곱값 반환
+# 🔹 문자열 리스트(numbers)에 포함된 숫자들을 정수(int)로 변환하여 합계를 구하는 다양한 방법
+numbers = ["7", "-11", "3"]  # 문자열 형태의 숫자 리스트
 
-    #클로저 함수는 안쪽함수가 바깥쪽함수에서 선언된 변수나 매개변수를 기억해 안쪽함수가 실행될때 기억한 변수를 활용할수있다.
+# ✅ 방법 1: map() + sum() 활용 (가장 간결하고 효율적인 방법)
+print(sum(map(int, numbers)))  
+# map(int, numbers): 리스트 내 문자열을 정수로 변환
+# sum(...): 변환된 정수들의 합을 계산
+# 출력 결과: -1
+# ✔ 장점: 코드가 간결하고 빠름
+# ❌ 단점: 초보자가 이해하기 어려울 수 있음
 
-    return inner_func  # 내부 함수 객체를 반환 (실행되지 않음)
 
-# 외부 함수 호출하여 클로저 생성
-x = out_func(9)  # out_func(9) 실행 후 inner_func을 반환 (nout=9를 기억하는 함수)
+# ✅ 방법 2: for문을 이용하여 리스트에 변환된 값 저장 후 합산
+ns = []  # 변환된 정수를 저장할 리스트
+for n in numbers:  
+    ns.append(int(n))  # 문자열을 정수로 변환 후 리스트에 추가
+print(sum(ns))  
+# sum(ns): 변환된 정수 리스트의 합계를 계산
+# 출력 결과: -1
+# ✔ 장점: 변환 과정을 눈으로 확인할 수 있어 이해하기 쉬움
+# ❌ 단점: map() 방식보다 코드가 길어짐
 
-# 출력 확인
-print(type(x))   # <class 'function'> -> x는 inner_func을 가리키는 함수 객체
-print(x)         # <function out_func.<locals>.inner_func at 0x...> (메모리 주소 출력)
-print(x())       # inner_func 실행 -> 9 * 9 = 81
 
-# 🔹 내부 함수(Inner Function) 사용 예제 (클로저가 아님)
-# 외부 함수가 즉시 내부 함수를 실행하고 결과를 반환하는 방식
-def out_func(nout):
-    def inner_func(nin):  # 내부 함수 (nin 값을 받아서 제곱)
-        return nin * nin  # 전달된 nin 값을 제곱
-    return inner_func(nout)  # inner_func(nout) 실행 후 결과 반환
-
-# 함수 호출과 동시에 실행되므로 결과값이 반환됨
-print(out_func(5))  # 5 * 5 = 25
+# ✅ 방법 3: for문을 이용한 직접 누적 합산
+hap = 0  # 합계를 저장할 변수 초기화
+for number in numbers:  # 리스트 numbers의 요소를 하나씩 가져와서 반복
+    hap = hap + int(number)  # 문자열을 정수로 변환 후 합산
+print(hap)  
+# 출력 결과: -1
+# ✔ 장점: 동작 방식이 명확하여 초보자가 이해하기 쉬움
+# ❌ 단점: sum()을 직접 사용하는 방법보다 다소 비효율적
